@@ -23,7 +23,7 @@ os.chdir("C:\\users\\student\\Desktop\\CS5010\\Natty_Champs")
 #1980 is the first year that all columns have stats recorded
 #so we'll start our loop at the year 1980 and finish at 2019 since we already have 2020
 
-for year in range(1980,2020):
+for year in range(2020,1980,-1):
     url = f"https://www.basketball-reference.com/leagues/NBA_{year}_per_game.html"
 
     html = urlopen(url)
