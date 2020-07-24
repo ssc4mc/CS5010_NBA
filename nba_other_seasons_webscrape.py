@@ -55,6 +55,7 @@ for year in range(2020,1980,-1):
     stats['AST'] = stats['AST'].astype(float)
     
     #Add Year column to dataset, populate with year
+    #just realized I'm not sure if these years are integers
     stats["Year"] = year
 
     #Average Player:
