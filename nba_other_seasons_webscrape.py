@@ -11,7 +11,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plot
 
-os.chdir("C:\\users\\student\\Desktop\\CS5010\\Natty_Champs")
+#os.chdir("C:\\users\\student\\Desktop\\CS5010\\Natty_Champs")
 
 # =============================================================================
 # url1980 = "https://www.basketball-reference.com/leagues/NBA_1980_per_game.html"
@@ -70,31 +70,41 @@ for year in range(2020,1980,-1):
     print(year, "done")
 
 
-##Querying
-# =============================================================================
-# def PlayerLookup(playername):
-#     stats.loc[stats['Player'] == playername,:]
-#     player = (stats.loc[stats['Player'] == playername,:])
-#     return player
-#     
-# def PlayerComp(playername):
-#     avg_age = stats['Age'].mean()
-#     avg_pts = round(stats['PTS'].mean(),2)
-#     player = PlayerLookup(playername)
-#     avg_nba = pd.DataFrame().reindex_like(player)
-#     avg_nba['Age'] = avg_age
-#     avg_nba['PTS']= avg_pts
-#     avg_nba['Player'] = 'Avg Player'
-#     comp = pd.concat([player, avg_nba])
-#     comp_plot = comp.plot.bar(x="Age", y="PTS", rot=70, title =  playername + " vs Avg Nba")
-#     return comp_plot
-# 
-# PlayerLookup('Chris Paul')
-# 
-# PlayerComp('Chris Paul')
-# =============================================================================
+dataset = pd.read_csv('nba_years_dataset_summer.csv')
 
+def PlayerLookup(playername):
+    dataset.loc[dataset['Player'] == playername,:]
+    player = (dataset.loc[dataset['Player'] == playername,:])
+    return player
+
+def user_input_lookup():
+    x = input('Player Name?')
+    dataset.loc[dataset['Player'] == x,:]
+    player = (dataset.loc[dataset['Player'] == x,:])
+    return player
     
+    
+def PlayerComp(playername):
+    avg_age = dataset['Age'].mean()
+    avg_pts = round(dataset['PTS'].mean(),2)
+    player = PlayerLookup(playername)
+    avg_nba = pd.DataFrame().reindex_like(player)
+    avg_nba['Age'] = avg_age
+    avg_nba['PTS']= avg_pts
+    avg_nba['Player'] = 'Avg Player'
+    comp = pd.concat([player, avg_nba])
+    comp_plot = comp.plot.bar(x="Age", y="PTS", rot=70, title =  playername + " vs Avg Nba")
+    return comp_plot
+
+
+#Installed User Input
+user_input_lookup()
+
+#MVP'S
+Lebron = PlayerLookup('LeBron James')
+MJ  = PlayerLookup('Michael Jordan*')
+Giannis = PlayerLookup('Giannis Antetokounmpo')
+
 
 
 
