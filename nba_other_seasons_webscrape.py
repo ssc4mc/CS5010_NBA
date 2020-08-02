@@ -19,11 +19,53 @@ import matplotlib.pyplot as plot
 # url2020 = "https://www.basketball-reference.com/leagues/NBA_2020_per_game.html"
 # =============================================================================
 
+url = f"https://www.basketball-reference.com/leagues/NBA_2020_per_game.html"
+
+html = urlopen(url)
+
+soup = BeautifulSoup(html, features= "lxml")
+
+# use findALL() to get the column headers
+soup.findAll('tr', limit=2)
+
+# use getText()to extract the text we need into a list
+headers = [th.getText() for th in soup.findAll('tr', limit=2)[0].findAll('th')]
+
+# exclude the first column as we will not need the ranking order from Basketball Reference for the analysis
+headers = headers[1:]
+
+# avoid the first header row
+rows = soup.findAll('tr')[2:]
+player_stats = [[td.getText() for td in rows[i].findAll('td')]
+                for i in range(len(rows))]
+
+#Official Data set
+stats = pd.DataFrame(player_stats, columns = headers)
+stats = stats.astype(str)
+stats = stats.mask(stats.eq('None')).dropna()
+stats['Age'] = stats['Age'].astype(int)
+stats['PTS'] = stats['PTS'].astype(float)
+stats['MP'] = stats['MP'].astype(float)
+stats['AST'] = stats['AST'].astype(float)
+    
+#Add Year column to dataset, populate with year
+stats["Year"] = 2020
+
+#Average Player:
+avg_age = stats['Age'].mean()
+avg_pts = stats['PTS'].mean()
+avg_mins = stats['MP'].mean()
+avg_ast = stats['AST'].mean()
+    
+
+#create csv
+stats.to_csv('nba_years_dataset.csv', mode='w', index=False, header=True)
+print('2020 csv created')
 
 #1980 is the first year that all columns have stats recorded
-#so we'll start our loop at the year 1980 and finish at 2019 since we already have 2020
+#so we'll start our loop at the year 2019 since we already have 202 and go all the way back to 1980 
 
-for year in range(2020,1980,-1):
+for year in range(2019,1980,-1):
     url = f"https://www.basketball-reference.com/leagues/NBA_{year}_per_game.html"
 
     html = urlopen(url)
@@ -66,11 +108,11 @@ for year in range(2020,1980,-1):
     
     
     #append these stats to existing csv file, no headers needed
-    stats.to_csv('nba_years_dataset_summer.csv', mode='a', index=False, header=False)
+    stats.to_csv('nba_years_dataset.csv', mode='a', index=False, header=False)
     print(year, "done")
 
 
-dataset = pd.read_csv('nba_years_dataset_summer.csv')
+dataset = pd.read_csv('nba_years_dataset.csv')
 
 def PlayerLookup(playername):
     dataset.loc[dataset['Player'] == playername,:]
@@ -107,7 +149,6 @@ Giannis = PlayerLookup('Giannis Antetokounmpo')
 
 
 
-
 '''
 REFERENCES:
 1) https://pythonprogramming.net/introduction-scraping-parsing-beautiful-soup-tutorial/ (Pt3)
@@ -115,4 +156,3 @@ REFERENCES:
 3) https://pythontic.com/pandas/dataframe-plotting/bar%20chart
 4) https://pythonprogramming.net/introduction-scraping-parsing-beautiful-soup-tutorial/
 '''
-
