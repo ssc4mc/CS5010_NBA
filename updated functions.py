@@ -19,6 +19,8 @@ def PlayerLookup():
      playername = input("Look up a player by player name:")
      year = input("What year do you want?")
      player = stats.loc[(stats['Player'] == playername) & (stats['Year'] == int(year)),:]
+     global year 
+     global playername
      return player
     
     
@@ -55,5 +57,9 @@ def YearlyComparisonTrend(startyear,endyear,statistic, howmany): #get the averag
 
 print(YearlyComparisonTrend(1995, 2008, "PTS", 10))
 
+PlayerLookup()
 
+PlayerComp()
+
+yearAvg(2020,"PTS",10)
     
