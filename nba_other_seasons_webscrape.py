@@ -59,13 +59,13 @@ avg_ast = stats['AST'].mean()
     
 
 #create csv
-stats.to_csv('nba_years_dataset.csv', mode='w', index=False, header=True)
+stats.to_csv('nba_data.csv', mode='w', index=False, header=True)
 print('2020 csv created')
 
 #1980 is the first year that all columns have stats recorded
 #so we'll start our loop at the year 2019 since we already have 202 and go all the way back to 1980 
 
-for year in range(2019,1980,-1):
+for year in range(2019,1979,-1):
     url = f"https://www.basketball-reference.com/leagues/NBA_{year}_per_game.html"
 
     html = urlopen(url)
@@ -108,11 +108,11 @@ for year in range(2019,1980,-1):
     
     
     #append these stats to existing csv file, no headers needed
-    stats.to_csv('nba_years_dataset.csv', mode='a', index=False, header=False)
+    stats.to_csv('nba_data.csv', mode='a', index=False, header=False)
     print(year, "done")
 
 
-dataset = pd.read_csv('nba_years_dataset.csv')
+dataset = pd.read_csv('nba_data.csv')
 
 def PlayerLookup(playername):
     dataset.loc[dataset['Player'] == playername,:]
