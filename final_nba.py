@@ -197,6 +197,28 @@ print(a)
 
     
 
+# Results
+'''
+Who’s the best player in NBA history in terms of statistics (not including wins, championships, and MVPS? 
+Jordan (1984 - 2003) vs Lebron (2003-2020)
+Player Statistics of Lebron vs Jordan (query 1 - via PlayerLookup)
+Comparison of how well they did verse the league averages of the year(s) they played basketball (query 2 - via PlayerComp)
+'''
+PlayerLookup()
+
+'''
+How has basketball changed in terms of various statistics that define the sport?
+Is it as physical? 
+Trend of 3 point field goals and 2 point field goals and how they have changed over the years (via YearlyComparisonTrend)
+Are players generally better
+Trend of FG percentage and points and how that has changed over the years (via YearlyCompariosonTrend)
+'''
+
+
+
+
+
+
 '''
 REFERENCES:
 1) https://pythonprogramming.net/introduction-scraping-parsing-beautiful-soup-tutorial/ (Pt3)
