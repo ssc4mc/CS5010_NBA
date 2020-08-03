@@ -170,71 +170,6 @@ def return_player(player):
 # yearAvg(2020,"PTS",10)
 # =============================================================================
 
-yearAvg(2020,"PTS",10)
-
-MJ = return_player('Michael Jordan*')
-MJ_avg = np.mean(MJ)
-MJ_avg
-
-LBJ = return_player('LeBron James')
-LBJ_avg = np.mean(LBJ)
-LBJ_avg
-
-
-comparison_df = pd.DataFrame({"x":LBJ_avg, "y":MJ_avg})
-
-comparisons_LBJ_MJ = comparison_df['x'] > comparison_df['y']
-
-comparisons_LBJ_MJ
-i = 0 
-a = 0 
-for elements in comparisons_LBJ_MJ:
-    if elements == True:
-        i += 1
-        print('LBJ advantage' )
-    else:
-        print('MJ advntage')
-        a += 1
-print(i)
-print(a)
-        
-
-
-'''
-Also view explanations by holding mouse over column headers
-Rk -- Rank
-Pos -- Position
-Age -- Player's age on February 1 of the season
-Tm -- Team
-G -- Games
-GS -- Games Started
-MP -- Minutes Played Per Game
-FG -- Field Goals Per Game
-FGA -- Field Goal Attempts Per Game
-FG% -- Field Goal Percentage
-3P -- 3-Point Field Goals Per Game
-3PA -- 3-Point Field Goal Attempts Per Game
-3P% -- 3-Point Field Goal Percentage
-2P -- 2-Point Field Goals Per Game
-2PA -- 2-Point Field Goal Attempts Per Game
-2P% -- 2-Point Field Goal Percentage
-eFG% -- Effective Field Goal Percentage
-This statistic adjusts for the fact that a 3-point field goal is worth one more point than a 2-point field goal.
-FT -- Free Throws Per Game
-FTA -- Free Throw Attempts Per Game
-FT% -- Free Throw Percentage
-ORB -- Offensive Rebounds Per Game
-DRB -- Defensive Rebounds Per Game
-TRB -- Total Rebounds Per Game
-AST -- Assists Per Game
-STL -- Steals Per Game
-BLK -- Blocks Per Game
-TOV -- Turnovers Per Game
-PF -- Personal Fouls Per Game
-PTS -- Points Per Game
-
-'''
-    
 
 # Results
 '''
@@ -272,10 +207,8 @@ print(f"MJ advantages: {a}")
 '''
 Comparing each player's points to the average player in the median year of their career
 '''
-
+#1992 for MJ and 2002 for LBJ
 PlayerComp()
-
-
 
 
 '''
@@ -303,6 +236,7 @@ YearlyComparisonTrend(1980, 2020, "PTS", 100)
 
 
 
+#Legend
 '''
 Also view explanations by holding mouse over column headers
 Rk -- Rank
