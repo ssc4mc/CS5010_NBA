@@ -152,6 +152,12 @@ def YearlyComparisonTrend(startyear,endyear,statistic, howmany): #get the averag
     # plot1 = plt.plot(new["Year"], new[statistic], color = "blue", marker = "o")
     return plot1
 
+def return_player(player):
+     player = dataset.loc[(dataset['Player'] == player)]
+     player = pd.DataFrame(player)
+     return player
+ 
+
 print(YearlyComparisonTrend(1995, 2008, "PTS", 10))
 
 PlayerLookup()
@@ -159,6 +165,36 @@ PlayerLookup()
 PlayerComp()
 
 yearAvg(2020,"PTS",10)
+
+MJ = return_player('Michael Jordan*')
+MJ_avg = np.mean(MJ)
+MJ_avg
+
+LBJ = return_player('LeBron James')
+LBJ_avg = np.mean(LBJ)
+LBJ_avg
+
+
+comparison_df = pd.DataFrame({"x":LBJ_avg, "y":MJ_avg})
+
+comparisons_LBJ_MJ = comparison_df['x'] > comparison_df['y']
+
+comparisons_LBJ_MJ
+i = 0 
+a = 0 
+for elements in comparisons_LBJ_MJ:
+    if elements == True:
+        i += 1
+        print('LBJ advantage' )
+    else:
+        print('MJ advntage')
+        a += 1
+print(i)
+print(a)
+        
+
+
+
     
 
 '''
