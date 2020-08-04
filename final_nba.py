@@ -125,7 +125,7 @@ def PlayerLookup():
 
 #Compare chosen player's average points with the average-aged player of that year
 def PlayerComp():
-    year = input('what year are you interested in the average nba player? ')
+    year = input('what year are you interested in the average nba player? ').strip()
     chosen_year = dataset.loc[dataset["Year"] == int(year)]
     mean_for_age = chosen_year["Age"].mean()
     avg_pts = round(chosen_year["PTS"].mean(),2)
