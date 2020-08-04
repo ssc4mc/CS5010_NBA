@@ -122,8 +122,9 @@ def PlayerLookup():
     
     
 def PlayerComp():
+    year = input('what year are you interested in the average nba player? ')
     chosen_year = dataset.loc[dataset["Year"] == int(year)]
-    mean_for_age = chosen_year["Age"].mean()
+    mean_for_age = round(chosen_year["Age"].mean(),2)
     avg_pts = round(chosen_year["PTS"].mean(),2)
     player = PlayerLookup()
     avg_nba = pd.DataFrame().reindex_like(player)
@@ -131,7 +132,7 @@ def PlayerComp():
     avg_nba['PTS']= avg_pts
     avg_nba['Player'] = 'Avg Player'
     comp = pd.concat([player, avg_nba])
-    comp_plot = comp.plot.bar(x="Age", y="PTS", rot=70, title =  "Chosen player (left)  vs Avg Nba(right)")
+    comp_plot = comp.plot.bar(x= 'Age' , y='PTS' , rot=70, title =  "Chosen player (left)  vs Avg Nba(right)")
     return comp_plot
 
 
