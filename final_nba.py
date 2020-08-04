@@ -123,8 +123,9 @@ def PlayerLookup():
      player = dataset.loc[(dataset['Player'] == playername) & (dataset['Year'] == int(year)),:]
      return player
 
-#Compare chosen player's average points with the average player of that year
+#Compare chosen player's average points with the average-aged player of that year
 def PlayerComp():
+    year = input('what year are you interested in the average nba player? ')
     chosen_year = dataset.loc[dataset["Year"] == int(year)]
     mean_for_age = chosen_year["Age"].mean()
     avg_pts = round(chosen_year["PTS"].mean(),2)
